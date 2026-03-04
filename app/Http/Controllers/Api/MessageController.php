@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
-    // GET /api/messages
+    
     public function index()
     {
         return response()->json(
@@ -16,7 +16,7 @@ class MessageController extends Controller
         );
     }
 
-    // POST /api/messages
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -38,7 +38,7 @@ class MessageController extends Controller
         return response()->json($msg, 201);
     }
 
-    // PUT /api/messages/{id} (باش admin يدير résolu)
+
     public function update(Request $request, $id)
     {
         $msg = Message::findOrFail($id);
@@ -54,7 +54,7 @@ class MessageController extends Controller
         return response()->json($msg);
     }
 
-    // DELETE /api/messages/{id}
+
     public function destroy($id)
     {
         $msg = Message::findOrFail($id);
@@ -65,7 +65,7 @@ class MessageController extends Controller
         ]);
     }
 
-    // GET /api/messages/{id}
+
     public function show($id)
     {
         return response()->json(

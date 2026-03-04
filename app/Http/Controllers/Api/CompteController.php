@@ -33,7 +33,7 @@ class CompteController extends Controller
 
 
 
-    // GET /api/comptes/{id}
+
     public function show($id)
     {
         $compte = Compte::find($id);
@@ -41,7 +41,7 @@ class CompteController extends Controller
         return response()->json($compte);
     }
 
-    // PATCH /api/comptes/{id} -> Update solde
+
     public function update(Request $request, $id)
     {
         $compte = Compte::find($id);
@@ -57,11 +57,11 @@ class CompteController extends Controller
         return response()->json($compte);
     }
 
-    // POST /api/comptes
+
     public function store(Request $request)
     {
         $request->validate([
-            'rib' => 'required|string|unique:comptes',
+            'rib' => 'required|string|unique:comptes|min:6',
             'solde' => 'required|numeric',
             'type' => 'required|string',
             'banque_id' => 'required|integer',
@@ -72,7 +72,7 @@ class CompteController extends Controller
         return response()->json($compte, 201);
     }
 
-    // DELETE /api/comptes/{id}
+
     public function destroy($id)
     {
         $compte = Compte::find($id);

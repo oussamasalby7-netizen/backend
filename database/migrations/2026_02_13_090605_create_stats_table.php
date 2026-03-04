@@ -12,10 +12,10 @@ return new class extends Migration
    public function up(): void
 {
     Schema::create('stats', function (Blueprint $table) {
-        $table->id(); // AUTO
+        $table->id();
         $table->unsignedBigInteger('user_id');
-        $table->json('favori'); // {compte_dest, total}
-        $table->json('contact_frequent'); // object
+        $table->json('favori');
+        $table->json('contact_frequent');
         $table->json('total_transactions'); // object
         $table->timestamps();
     });

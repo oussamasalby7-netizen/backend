@@ -8,22 +8,18 @@ use App\Models\Compte;
 
 class StatController extends Controller
 {
-    // GET /api/stats/{userId}
+
     public function show($userId)
     {
-        //transactions 
-        $transactions = Transaction::where('user_id', $userId)->get();
-
-        // compte le plus reçu (favori)
-        $favori = Transaction::where('user_id', $userId)
+        $favori = Transaction::where('user_id', $userId)//=>
             ->whereNotNull('compte_dest')
             ->selectRaw('compte_dest, SUM(montant) as total')
             ->groupBy('compte_dest')
             ->orderByDesc('total')
             ->first();
 
-        // contact fréquent (envoyé)
-        $contactFrequent = Transaction::where('user_id', $userId)
+
+        $contactFrequent = Transaction::where('user_id', $userId)//<=
             ->whereNotNull('compte_source')
             ->selectRaw('compte_source, SUM(montant) as total')
             ->groupBy('compte_source')
@@ -44,7 +40,7 @@ class StatController extends Controller
         ]);
     }
 
-    // Optionnel: GET /api/user-stats?user_id=1
+
     public function userStats()
     {
         $userId = request()->query('user_id');

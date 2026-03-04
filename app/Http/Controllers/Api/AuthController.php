@@ -12,7 +12,7 @@ namespace App\Http\Controllers\Api;
  {
      public function register(Request $request)
      {
-         // Validation
+
          $validator = Validator::make($request->all(), [
              'nom' => 'required|string|max:255',
              'email' => 'required|string|email|unique:users',
@@ -23,15 +23,15 @@ namespace App\Http\Controllers\Api;
          if ($validator->fails()) {
              return response()->json(['errors' => $validator->errors()], 422);
           }
-         // Création utilisateur
+
             $user = User::create([
                 'nom' => $request->nom,
                 'email' => $request->email,
-                'mot_de_passe' => $request->mot_de_passe, // Mutator in User model handles bcrypt
+                'mot_de_passe' => $request->mot_de_passe,
              'role' => 'client'
          ]);
 
-          // JWT token
+          
           $token = Auth::login($user);
 
            return response()->json([
@@ -41,12 +41,12 @@ namespace App\Http\Controllers\Api;
             ], 201);
         }
 
-        // Login
+
         public function login(Request $request)
         {
            $credentials = [
     'email' => $request->email,
-    'password' => $request->mot_de_passe // Laravel fera Hash::check automatiquement
+    'password' => $request->mot_de_passe
 ];
 
 if (!$token = Auth::attempt($credentials)) {
@@ -63,7 +63,7 @@ if (!$token = Auth::attempt($credentials)) {
            ]);
      }
 
-     // Logout
+
         public function logout(Request $request)
         {
            Auth::logout();

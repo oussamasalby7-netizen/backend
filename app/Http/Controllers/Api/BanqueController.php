@@ -9,14 +9,14 @@ use Illuminate\Validation\ValidationException;
 
 class BanqueController extends Controller
 {
-    // Liste toutes les banques
+
     public function index()
     {
         $banques = Banque::all();
         return response()->json(['banques' => $banques]);
     }
 
-    // Créer une nouvelle banque
+
     public function store(Request $request)
     {
         try {
@@ -33,7 +33,7 @@ class BanqueController extends Controller
         return response()->json(['banque' => $banque], 201);
     }
 
-    // Afficher une banque
+
     public function show(string $id)
     {
         $banque = Banque::find($id);
@@ -44,7 +44,7 @@ class BanqueController extends Controller
         return response()->json(['banque' => $banque]);
     }
 
-    // Mettre à jour une banque
+
     public function update(Request $request, string $id)
     {
         $banque = Banque::find($id);
@@ -66,7 +66,7 @@ class BanqueController extends Controller
         return response()->json(['banque' => $banque]);
     }
 
-    // Supprimer une banque
+    
     public function destroy(string $id)
     {
         $banque = Banque::find($id);

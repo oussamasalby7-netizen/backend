@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    // GET /api/users
+    
     public function index()
     {
         return response()->json(User::all());
     }
 
-    // POST /api/users
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -34,7 +34,7 @@ class UserController extends Controller
         return response()->json($user, 201);
     }
 
-    // DELETE /api/users/{id}
+
     public function destroy($id)
     {
         $user = User::findOrFail($id);
@@ -45,12 +45,12 @@ class UserController extends Controller
         ]);
     }
 
-    // GET /api/users/{id}
+
     public function show($id)
     {
         return response()->json(User::findOrFail($id));
     }
-    // PUT /api/users/{id}
+
 public function update(Request $request, $id)
 {
     $user = User::findOrFail($id);
